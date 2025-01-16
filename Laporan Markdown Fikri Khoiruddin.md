@@ -8,8 +8,6 @@ Proyek ini bertujuan untuk membangun sistem rekomendasi game berbasis pendekatan
 
 Hasilnya adalah sistem yang dapat memberikan rekomendasi game yang relevan untuk pengguna berdasarkan game yang dipilih, membantu pengguna menemukan game yang sesuai dengan preferensi mereka.
 
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
   - Meningkatkan Pengalaman Pengguna
   Sistem rekomendasi membantu pengguna menemukan game yang relevan dan sesuai dengan preferensi mereka, mengurangi waktu pencarian, dan meningkatkan kepuasan pengguna.
 
@@ -48,25 +46,16 @@ Solution Approach
           Memberikan rekomendasi top-N game yang paling mirip dengan game pilihan pengguna.
       Evaluasi: Meninjau hasil rekomendasi untuk memastikan relevansi dan akurasi sistem.
 
-  2. Collaborative Filtering
-  Pendekatan ini didasarkan pada perilaku pengguna atau pola interaksi pengguna dengan game tertentu. Model ini memanfaatkan data riwayat ulasan atau pembelian pengguna untuk memberikan rekomendasi.
-  Langkah-Langkah:
-      Data Input:
-          Memanfaatkan data interaksi pengguna, seperti ulasan atau skor yang diberikan pengguna pada game tertentu.
-          Menggunakan data dari pengguna yang memiliki preferensi serupa.
-      Modeling dengan Pendekatan Matriks:
-          Membentuk matriks interaksi pengguna-game, di mana baris merepresentasikan pengguna dan kolom merepresentasikan game.
-          Menggunakan algoritma seperti Singular Value Decomposition (SVD) untuk mendeteksi pola dalam matriks interaksi.
-      Prediksi dan Rekomendasi:
-          Memproyeksikan preferensi pengguna pada game yang belum pernah mereka mainkan.
-          Memberikan rekomendasi top-N game berdasarkan prediksi tersebut.
-      Evaluasi: Mengukur performa rekomendasi menggunakan metrik seperti Mean Absolute Error (MAE) atau Root Mean Square Error (RMSE).
-
 ## Data Understanding
 Dataset yang digunakan dalam proyek ini berisi informasi tentang berbagai game, termasuk fitur-fitur yang relevan untuk membangun sistem rekomendasi. 
-Dataset memiliki 50,872 baris dan 13 kolom, yang terdiri dari atribut-atribut berikut:
+Dataset memiliki: 
+- 50,872 baris
+- 13 kolom
+- Dataset tidak memiliki Missing Values ataupun Outlier, jadi siap dipakai.
 
-### Variabel-variabel pada dataset games.csv adalah sebagai berikut:
+Sumber Tautan Dataset [Game Recommendations on Steam](https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam)
+
+# Variabel-variabel pada dataset games.csv adalah sebagai berikut:
 Fitur independen:
   - app_id	ID unik untuk setiap game.
   - title	Nama atau judul game.
@@ -82,9 +71,6 @@ Fitur independen:
   - discount	Diskon dalam persentase untuk game tertentu.
   - steam_deck	Ketersediaan game untuk platform Steam Deck (1 jika tersedia, 0 jika tidak).
 
-Sumber Dataset [Game Recommendations on Steam](https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam)
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
 - Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
 ![Distribusi Rating Game](https://github.com/jurus231/MLTerapanLastAssg/blob/main/output.png?raw=true)
 
@@ -115,7 +101,7 @@ Pada proyek ini, beberapa teknik persiapan data diterapkan untuk memastikan data
       Alasan: Menghindari error dalam perhitungan atau model akibat nilai kosong, sekaligus mempertahankan distribusi data.
 
 ## Modeling
-Pada bagian ini, dua pendekatan sistem rekomendasi diterapkan untuk menyelesaikan permasalahan: Content-Based Filtering dan Collaborative Filtering. Setiap pendekatan menghasilkan rekomendasi berbasis karakteristik data yang relevan.
+Pada bagian ini, dua pendekatan sistem rekomendasi diterapkan untuk menyelesaikan permasalahan: Content-Based Filtering. Setiap pendekatan menghasilkan rekomendasi berbasis karakteristik data yang relevan.
 
 1. Content-Based Filtering
   a. Deskripsi Pendekatan
@@ -150,37 +136,8 @@ Pada bagian ini, dua pendekatan sistem rekomendasi diterapkan untuk menyelesaika
       Bergantung pada kualitas fitur yang digunakan (feature engineering).
       Tidak dapat merekomendasikan game dengan fitur yang tidak terwakili di dataset.
 
-2. Collaborative Filtering
-a. Deskripsi Pendekatan
-Pendekatan ini memanfaatkan data interaksi pengguna, seperti ulasan atau rating yang diberikan pada game. Model ini merekomendasikan game berdasarkan kesamaan preferensi antar pengguna.
-
-b. Implementasi
-    Algoritma: Matrix Factorization atau teknik seperti Singular Value Decomposition (SVD).
-    Input Data: Dataset user-game interaction (dalam proyek ini dapat dikembangkan lebih lanjut untuk kasus nyata).
-
-c. Hasil Top-10 Rekomendasi (Simulasi)
-  Contoh simulasi rekomendasi (dengan asumsi data interaksi pengguna tersedia):
-      The Witcher 3: Wild Hunt
-      Skyrim Special Edition
-      Red Dead Redemption 2
-      Cyberpunk 2077
-      Fallout 4
-      Assassin's Creed Odyssey
-      Mass Effect: Andromeda
-      Star Wars Jedi: Survivor
-      Horizon Zero Dawn
-      Dragon Age: Inquisition
-
-d. Kelebihan dan Kekurangan
-  - Kelebihan
-    Dapat menghasilkan rekomendasi yang dipersonalisasi untuk setiap pengguna.	
-    Tidak memerlukan informasi atribut game secara detail.
-  - Kekurangan
-    Membutuhkan data interaksi pengguna yang besar dan berkualitas.
-    Sulit merekomendasikan game baru yang belum memiliki interaksi pengguna.
-
 ## Evaluation
-Dalam bagian ini, evaluasi sistem rekomendasi dilakukan untuk mengukur kinerja kedua pendekatan yang diterapkan (Content-Based Filtering dan Collaborative Filtering). Metrik evaluasi yang digunakan disesuaikan dengan konteks data dan problem statement untuk memastikan hasil yang akurat dan relevan.
+Dalam bagian ini, evaluasi sistem rekomendasi dilakukan untuk mengukur kinerja kedua pendekatan yang diterapkan (Content-Based Filtering). Metrik evaluasi yang digunakan disesuaikan dengan konteks data dan problem statement untuk memastikan hasil yang akurat dan relevan.
 
 Hasil Proyek Berdasarkan Metrik Evaluasi
 Berikut adalah hasil yang diperoleh dari masing-masing model:
@@ -225,18 +182,8 @@ Untuk mengukur kinerja sistem rekomendasi, digunakan dua metrik utama yang sesua
 
   Hasil ini menunjukkan bahwa sistem rekomendasi berbasis content mampu memberikan rekomendasi yang cukup relevan, meskipun ada beberapa game yang tidak berhasil diidentifikasi sebagai relevan oleh sistem (Recall sedikit lebih rendah).
 
-  Collaborative Filtering
-  Dengan menggunakan pendekatan Collaborative Filtering yang diimplementasikan melalui matrix factorization (SVD), berikut adalah hasil evaluasi:
-      Precision: 0.80
-      Recall: 0.75
-      F1-Score: 0.77
-
-  Pendekatan Collaborative Filtering menunjukkan kinerja yang lebih baik dalam hal precision, meskipun masih ada ruang untuk perbaikan dalam recall, terutama terkait dengan penemuan game relevan yang lebih banyak.
-
 3. Analisis Hasil dan Peningkatan
 Berdasarkan hasil evaluasi, kedua pendekatan memiliki kekuatan dan kelemahan masing-masing:
     Content-Based Filtering memiliki recall yang lebih rendah karena sistem hanya mengandalkan atribut game itu sendiri tanpa mempertimbangkan preferensi pengguna yang lebih mendalam.
-    Collaborative Filtering menunjukkan precision yang lebih tinggi karena model ini didasarkan pada interaksi antar pengguna, namun recall-nya sedikit lebih rendah karena ketergantungannya pada data interaksi pengguna yang lengkap.
 
 Untuk meningkatkan kinerja keseluruhan, bisa dipertimbangkan untuk menggabungkan kedua pendekatan ini dalam sebuah Hybrid Model, yang menggabungkan keunggulan dari kedua metode tersebut.
-**---Ini adalah bagian akhir laporan---**
